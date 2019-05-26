@@ -1,0 +1,21 @@
+{
+  "name": "dead-x",
+  "version": "0.0.1",
+  "description": "DeadXWallet Contract",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "compile": "waffle",
+    "test": "npm run compile && mocha"
+  },
+  "author": "Kelvin Fichter",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "ethereum-waffle": "^2.0.12",
+    "ethers": "^4.0.28",
+    "mocha": "^6.1.4"
+  }
+}
