@@ -10,7 +10,9 @@ The required bond amount defaults to 1 ETH and the timeout period defaults to 30
 
 Here's a flow chart that illustrates how `DeadXWallet` works:
 
-[DeadXWallet Flow Chart](./static/dead-x-wallet.svg)
+<p align="center">
+  <img src="./static/dead-x-wallet.svg">
+</p>
 
 ## License
 MIT
