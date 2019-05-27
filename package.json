@@ -1,5 +1,5 @@
 {
-  "name": "dead-x",
+  "name": "dead-x-wallet",
   "version": "0.0.1",
   "description": "DeadXWallet Contract",
   "main": "index.js",
@@ -19,3 +19,4 @@
     "mocha": "^6.1.4"
   }
 }
+
