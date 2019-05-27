@@ -6,7 +6,11 @@ Crypto can be a little terrifying at times. Losing access to a private key can p
 
 Although it might sound similar to social key recovery, `DeadXWallet` goes a little further than most wallets. It's important that no one, even one of your beneficiaries, is able to "recover" your funds while you still have access to your keys. In order to prevent this from happening, `DeadXWallet` requires that beneficiaries place a *bond* when attempting to recover the wallet. The owner of the wallet (you) may, at any time, cancel a recovery attempt and receive the beneficiary's bond. Once a pre-defined "timeout" window has passed and the recovery attempt has not been cancelled, the recovery can be finalized and the recovering beneficiary will become the owner of the wallet.
 
-You has ultimate control over the functionality of the smart contract. You can change the required bond amount (it defaults to 1 ETH), the timeout period (defaults to 30 days), and the list of approved beneficiaries. 
+The required bond amount defaults to 1 ETH and the timeout period defaults to 30 days. However, both of these values can be changed by the wallet's owner. Beneficiaries can also be arbitrarily added and removed by the owner.
+
+Here's a flow chart that illustrates how `DeadXWallet` works:
+
+[DeadXWallet Flow Chart](./static/dead-x-wallet.svg)
 
 ## License
 MIT
