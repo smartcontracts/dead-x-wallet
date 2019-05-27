@@ -104,7 +104,7 @@ contract DeadXWallet {
      */
     modifier onlyWhileNotRecovering() {
         require(
-            recoverer == address(0),
+            !isRecovering(),
             "Method can only be called if there is no active recovery attempt."
         );
 
@@ -117,7 +117,7 @@ contract DeadXWallet {
      */
     modifier onlyWhileRecovering() {
         require(
-            recoverer != address(0),
+            isRecovering(),
             "Method can only be called if there is an active recovery attempt."
         );
 
@@ -130,7 +130,7 @@ contract DeadXWallet {
      */
     modifier onlyWhenTimeoutCompleted() {
         require(
-            block.number > recoveryStart + recoveryTimeout,
+            timeoutCompleted(),
             "Method can only be called if the recovery timeout is completed."
         );
 
@@ -155,7 +155,27 @@ contract DeadXWallet {
     constructor() public {
         owner = msg.sender;
         recoveryBond = 1 ether;
-        recoveryTimeout = 5760 * 30; // ~30 days
+        recoveryTimeout = 30 days;
+    }
+
+    /**
+     * @notice Checks whether the contract has an active recovery attempt.
+     * @return `true` if the contract has a recovery attempt, `false`
+     * otherwise.
+     */
+    function isRecovering() public view returns (bool) {
+        return recoverer != address(0);
+    }
+
+    /**
+     * @notice Checks whether the recovery timeout has been completed.
+     * @return `true` if the timeout is completed, `false` otherwise.
+     */
+    function timeoutCompleted() public view returns (bool) {
+        return (
+            isRecovering()
+            && (block.timestamp > recoveryStart + recoveryTimeout)
+        );
     }
 
     /**
@@ -225,7 +245,7 @@ contract DeadXWallet {
         onlyWhileNotRecovering
     {
         recoverer = msg.sender;
-        recoveryStart = block.number;
+        recoveryStart = block.timestamp;
 
         emit RecoveryStarted(msg.sender);
     }
@@ -257,6 +277,5 @@ contract DeadXWallet {
 
         emit RecoveryFinalized(owner);
     }
-
 }
 
