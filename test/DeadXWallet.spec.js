@@ -12,7 +12,7 @@ const ethers = require('ethers')
 const DeadXWallet = require('../build/DeadXWallet')
 
 chai.use(solidity)
-const expect = chai.expect;
+const expect = chai.expect
 
 const NULL_BYTES = '0x00'
 const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
@@ -27,7 +27,7 @@ describe('DeadXWallet', () => {
     attacker,
     recipient,
   ] = getWallets(provider)
-  let contract;
+  let contract
 
   /**
    * Set the address that's transacting to the contract.
