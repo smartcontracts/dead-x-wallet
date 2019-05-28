@@ -195,9 +195,7 @@ contract DeadXWallet {
     {
         (bool success, bytes memory result) = _destination.call.value(_value)(_data);
 
-        if (!success) {
-            revert("Transaction execution failed.");
-        }
+        require(success, "Transaction execution failed.");
 
         return result;
     }
@@ -278,4 +276,3 @@ contract DeadXWallet {
         emit RecoveryFinalized(owner);
     }
 }
-
